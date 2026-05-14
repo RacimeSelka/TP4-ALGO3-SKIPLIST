@@ -154,9 +154,11 @@ bool skiplist_search(const SkipList *d, int value, unsigned int *nb_operations)
 		}
 		if (x->links[i].next != d->sentinelle && x->links[i].next->key==value)
 		{
+			(*nb_operations)++;
 			return true;
 		}
 	}
+	
 	return false;
 }
 

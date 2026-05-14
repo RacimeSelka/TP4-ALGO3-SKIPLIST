@@ -114,6 +114,7 @@ void test_construction(int num){
 	SkipList* list=buildlist(num);
 	printf("Skiplist (%d)\n",skiplist_size(list));
 	skiplist_map(list,f,NULL);
+	printf("\n");
 	
 }
 
@@ -166,14 +167,14 @@ void test_search(int num){
 
 	unsigned int mean_operations = nb_values > 0 ? total_operations / nb_values : 0;
 
-	printf("Statistics :\n");
-	printf("Size of the list : %u\n", skiplist_size(list));
+	printf("Statistics : \n");
+	printf("\tSize of the list : %u\n", skiplist_size(list));
 	printf("Search %u values :\n", nb_values);
-	printf("Found %u\n", found);
-	printf("Not found %u\n", not_found);
-	printf("Min number of operations : %u\n", min_operations);
-	printf("Max number of operations : %u\n", max_operations);
-	printf("Mean number of operations : %u\n", mean_operations);
+	printf("\tFound %u\n", found);
+	printf("\tNot found %u\n", not_found);
+	printf("\tMin number of operations : %u\n", min_operations);
+	printf("\tMax number of operations : %u\n", max_operations);
+	printf("\tMean number of operations : %u\n", mean_operations);
 
 	skiplist_delete(&list);
 }
@@ -245,14 +246,14 @@ void test_search_iterator(int num){
 
 	unsigned int mean_operations = nb_values > 0 ? total_operations / nb_values : 0;
 
-	printf("Statistics :\n");
-	printf("Size of the list : %u\n", skiplist_size(list));
+	printf("Statistics : \n");
+	printf("\tSize of the list : %u\n", skiplist_size(list));
 	printf("Search %u values :\n", nb_values);
-	printf("Found %u\n", found);
-	printf("Not found %u\n", not_found);
-	printf("Min number of operations : %u\n", min_operations);
-	printf("Max number of operations : %u\n", max_operations);
-	printf("Mean number of operations : %u\n", mean_operations);
+	printf("\tFound %u\n", found);
+	printf("\tNot found %u\n", not_found);
+	printf("\tMin number of operations : %u\n", min_operations);
+	printf("\tMax number of operations : %u\n", max_operations);
+	printf("\tMean number of operations : %u\n", mean_operations);
 
 	skiplist_delete(&list);
 }

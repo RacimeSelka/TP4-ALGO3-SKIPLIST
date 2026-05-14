@@ -24,8 +24,15 @@ function display_errors {
 }
 function compute_diff {
 	# get the differing lines into an array
-	readarray -t DIFF_LINES < <(diff "$1" "$2" | grep '<')
-	readarray -t SHOULDBE_LINES < <(diff "$1" "$2" | grep '>')
+	DIFF_LINES=()
+	while IFS= read -r line; do
+		DIFF_LINES+=("$line")
+	done < <(diff "$1" "$2" | grep '<')
+	
+	SHOULDBE_LINES=()
+	while IFS= read -r line; do
+		SHOULDBE_LINES+=("$line")
+	done < <(diff "$1" "$2" | grep '>')
 
 	
 	GOT=${#DIFF_LINES[*]}
