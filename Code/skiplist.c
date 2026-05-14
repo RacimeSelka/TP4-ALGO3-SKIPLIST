@@ -160,6 +160,44 @@ bool skiplist_search(const SkipList *d, int value, unsigned int *nb_operations)
 	return false;
 }
 
+SkipList *skiplist_remove(SkipList *d, int value)
+{
+	Node *trace[d->maxLevel];
+	Node *x = d->sentinelle;
+
+	
+	for (int i = d->maxLevel - 1; i >= 0; i--)
+	{
+		while (x->links[i].next != d->sentinelle && x->links[i].next->key < value)
+		{
+			x = x->links[i].next;
+		}
+		trace[i] = x;
+	}
+
+	
+	Node *node_to_remove = trace[0]->links[0].next;
+	if (node_to_remove == d->sentinelle || node_to_remove->key != value)
+	{
+		
+		return d;
+	}
+
+	
+	for (int i = 0; i < node_to_remove->level; i++)
+	{
+		trace[i]->links[i].next = node_to_remove->links[i].next;
+		node_to_remove->links[i].next->links[i].prev = trace[i];
+	}
+
+	
+	free(node_to_remove->links);
+	free(node_to_remove);
+
+	d->size--;
+	return d;
+}
+
 
 
 SkipListIterator* skiplist_iterator_create(SkipList* d, IteratorDirection w){

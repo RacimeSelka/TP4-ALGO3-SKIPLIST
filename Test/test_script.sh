@@ -26,6 +26,8 @@ function compute_diff {
 	# get the differing lines into an array
 	readarray -t DIFF_LINES < <(diff "$1" "$2" | grep '<')
 	readarray -t SHOULDBE_LINES < <(diff "$1" "$2" | grep '>')
+
+	
 	GOT=${#DIFF_LINES[*]}
 	EXPECTED=${#SHOULDBE_LINES[*]}
 
